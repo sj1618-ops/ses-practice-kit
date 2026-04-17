@@ -1,4 +1,0 @@
-# ses-monitor metrics
-wa=95.2
-load=3.87
-mem_used_pct=53.8
