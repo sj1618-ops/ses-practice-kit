@@ -1,0 +1,7 @@
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        3.9G     0  3.9G   0% /dev
+tmpfs           3.9G  2.1M  3.9G   1% /dev/shm
+tmpfs           3.9G  9.2M  3.9G   1% /run
+/dev/sda1        50G   21G   27G  44% /
+/dev/sdb1       200G  112G   77G  59% /data
+tmpfs           783M     0  783M   0% /run/user/1000

@@ -1,0 +1,45 @@
+以下はあるサーバーから取得した性能情報です。
+何が問題か診断してください。また、「サーバーのスペックを上げれば解決するか」も答えてください。
+
+【状況】
+バッチ処理サーバーで集計処理が全然終わらない。担当者がtopを見たところ「CPU使用率25%で余裕があるはずなのに遅い」と困っている。
+
+【top出力】
+top - 14:33:52 up 12 days,  6:48,  1 user,  load average: 1.02, 1.01, 0.98
+Tasks: 143 total,   2 running, 141 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 24.8 us,  0.2 sy,  0.0 ni, 74.9 id,  0.1 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7823.4 total,   3218.5 free,   2814.6 used,   1790.3 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   4728.4 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   7823 batch     20   0  234567  98234  12345 R  99.9   1.2  47:23.45 python3 aggregate.py
+    892 root      20   0  182456  28345   8234 S   0.0   0.4   0:05.32 systemd
+    923 root      20   0   45678  12345   8234 S   0.0   0.2   0:02.11 sshd
+   2341 app       20   0  823412 234567  23456 S   0.0   2.9   0:34.21 java
+
+【mpstat出力（CPUコアごとの使用率）】
+14:33:52     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+14:33:53     all   24.82    0.00    0.18    0.00    0.00    0.00    0.00    0.00    0.00   74.99
+14:33:53       0   99.00    0.00    1.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
+14:33:53       1    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+14:33:53       2    0.99    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   99.01
+14:33:53       3    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+
+Average:     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+Average:     all   25.00    0.00    0.16    0.00    0.00    0.00    0.00    0.00    0.00   74.83
+Average:       0   99.34    0.00    0.66    0.00    0.00    0.00    0.00    0.00    0.00    0.00
+Average:       1    0.33    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   99.67
+Average:       2    0.33    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   99.67
+Average:       3    0.33    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   99.67
+
+【vmstat出力】
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 1  0      0 3295872  98234 1834521    0    0     4    12  523  456 25  0 75  0  0
+ 1  0      0 3295234  98234 1834521    0    0     0     8  498  423 25  0 75  0  0
+ 1  0      0 3294876  98234 1834521    0    0     0    16  512  441 25  0 75  0  0
+
+【free出力】
+              total        used        free      shared  buff/cache   available
+Mem:           7.6G        2.7G        3.1G         12M        1.7G        4.6G
+Swap:          2.0G          0B        2.0G

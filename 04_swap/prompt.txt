@@ -1,0 +1,40 @@
+以下はあるサーバーから取得した性能情報です。
+何が問題か診断してください。
+
+【状況】
+アプリサーバーが夜間バッチ実行後からずっと重い。SSHすら繋がりにくい。担当者がfreeを確認したところ「メモリにまだ余裕があるのになぜ遅いのか」と言っている。
+
+【free出力】
+              total        used        free      shared  buff/cache   available
+Mem:           7.6G        6.2G        523M        234M        923M        876M
+Swap:          4.0G        3.7G        300M
+
+【vmstat出力】
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 2  1 3878912 535804  98234 845321  487  512   523   548 3421 4523 35  8 45 12  0
+ 1  2 3879034 534912  98234 845321  523  498   567   523 3234 4234 38 10 40 12  0
+ 3  1 3879128 534234  98234 845321  456  534   498   556 3123 4123 32  9 47 12  0
+ 2  2 3879234 533876  98234 845321  512  487   543   512 3312 4312 36  9 43 12  0
+ 1  1 3879312 533512  98234 845321  498  523   512   534 3234 4234 34  8 46 12  0
+
+【top出力】
+top - 03:28:14 up  3 days,  7:44,  1 user,  load average: 2.87, 3.12, 3.45
+Tasks: 198 total,   3 running, 194 sleeping,   0 stopped,   1 zombie
+%Cpu(s): 35.2 us,  9.1 sy,  0.0 ni, 43.5 id, 12.2 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7823.4 total,    511.2 free,   6348.9 used,    963.3 buff/cache
+MiB Swap:   4096.0 total,    292.4 free,   3803.6 used.    854.2 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   8823 app       20   0 4823412 2234567  23456 S  42.3  27.8  12:34.56 java
+   8824 app       20   0 4823412 2234567  23456 S  38.1  27.8   8:23.45 java
+   8825 batch     20   0 2345678 1923456  12345 S  21.4  23.9   5:12.34 python3 nightly.py
+
+【iostat出力】
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+          35.12    0.00    9.08   12.23    0.00   43.57
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz  %util
+sda              0.12      1.54     0.00   0.00    0.45    12.83    0.02      0.13     0.00   0.00    1.23     6.50   0.01
+sdb             68.34   4234.56     1.23   1.77    8.23    61.98   52.45   4198.23     3.45  6.17    9.12    79.96  78.43
+dm-0            98.23   4987.34     0.00   0.00   12.34    50.77   73.12   4234.56     0.00  0.00   11.23    57.91  89.12

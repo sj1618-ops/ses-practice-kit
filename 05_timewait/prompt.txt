@@ -1,0 +1,47 @@
+以下はあるサーバーから取得した情報です。
+何が問題か診断してください。
+
+【状況】
+WebアプリサーバーでAPI接続エラーが突然多発し始めた。CPU・メモリ・ディスクはどれも正常に見える。アプリのプロセスも動いている。「何も変えていないのになぜ接続できないのか」という状況。
+
+【top出力】
+top - 16:54:33 up  8 days, 22:14,  2 users,  load average: 1.23, 1.18, 1.21
+Tasks: 167 total,   2 running, 165 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 18.4 us,  3.2 sy,  0.0 ni, 77.9 id,  0.3 wa,  0.0 hi,  0.2 si,  0.0 st
+MiB Mem :   7823.4 total,   2318.5 free,   3914.6 used,   1590.3 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   3518.4 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   5421 app       20   0 1823412 934567  23456 S  18.2  11.6  42:12.34 node
+   5422 app       20   0 1823412 934567  23456 S  12.3  11.6  38:45.23 node
+    892 root      20   0  182456  28345   8234 S   0.0   0.4   0:05.32 systemd
+
+【free出力】
+              total        used        free      shared  buff/cache   available
+Mem:           7.6G        3.8G        2.2G        234M        1.5G        3.3G
+Swap:          2.0G          0B        2.0G
+
+【df -h出力】
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        50G   21G   27G  44% /
+/dev/sdb1       200G  112G   77G  59% /data
+
+【netstat出力】
+# TIME_WAIT件数
+28547件
+
+# TIME_WAITの一部（同様の行が2万8千件以上ある）
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 192.168.1.10:54821      203.0.113.42:443        TIME_WAIT
+tcp        0      0 192.168.1.10:54822      203.0.113.42:443        TIME_WAIT
+tcp        0      0 192.168.1.10:54823      203.0.113.42:443        TIME_WAIT
+tcp        0      0 192.168.1.10:60001      203.0.113.42:443        TIME_WAIT
+tcp        0      0 192.168.1.10:60002      203.0.113.42:443        TIME_WAIT
+tcp        0      0 192.168.1.10:60003      198.51.100.15:443       TIME_WAIT
+
+# 使用可能なポートレンジ
+32768 〜 60999（合計28,231個）
+
+【ssコマンド サマリー】
+Total: 28965
+TCP:   28954 (estab 298, closed 28623, orphaned 8, timewait 28547)

@@ -1,0 +1,13 @@
+top - 16:54:33 up  8 days, 22:14,  2 users,  load average: 1.23, 1.18, 1.21
+Tasks: 167 total,   2 running, 165 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 18.4 us,  3.2 sy,  0.0 ni, 77.9 id,  0.3 wa,  0.0 hi,  0.2 si,  0.0 st
+MiB Mem :   7823.4 total,   2318.5 free,   3914.6 used,   1590.3 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   3518.4 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   5421 app       20   0 1823412 934567  23456 S  18.2  11.6  42:12.34 node
+   5422 app       20   0 1823412 934567  23456 S  12.3  11.6  38:45.23 node
+    892 root      20   0  182456  28345   8234 S   0.0   0.4   0:05.32 systemd
+    923 root      20   0   45678  12345   8234 S   0.0   0.2   0:02.11 sshd
+   1234 root      20   0   98234  23456   8234 S   0.0   0.3   0:01.45 nginx
+    445 root      20   0   12345   4567   3456 S   0.0   0.1   0:00.45 rsyslogd

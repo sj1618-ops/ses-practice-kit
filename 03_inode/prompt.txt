@@ -1,0 +1,41 @@
+以下はあるサーバーから取得した情報です。
+何が問題か診断してください。
+
+【状況】
+ログ収集サーバーで「No space left on device」というエラーが出てアプリのログが書き込めなくなった。担当者がdf -hを確認したところ「どのディスクも余裕があるはずなのになぜ？」と混乱している。
+
+【df -h出力（ディスク容量）】
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        3.9G     0  3.9G   0% /dev
+tmpfs           3.9G  2.1M  3.9G   1% /dev/shm
+tmpfs           3.9G  9.2M  3.9G   1% /run
+/dev/sda1        50G   18G   30G  37% /
+/dev/sdb1       200G   87G  102G  47% /data
+/dev/sdc1       100G   42G   53G  45% /var
+tmpfs           783M     0  783M   0% /run/user/1000
+
+【df -i出力（inode使用状況）】
+Filesystem       Inodes   IUsed    IFree IUse% Mounted on
+devtmpfs         998034     412   997622    1% /dev
+tmpfs           1003520      48  1003472    1% /dev/shm
+tmpfs           1003520    1234  1002286    1% /run
+/dev/sda1       3276800  245678  3031122    8% /
+/dev/sdb1      13107200 1234567 11872633    9% /data
+/dev/sdc1       6553600 6553599        1  100% /var
+tmpfs           1003520       4  1003516    1% /run/user/1000
+
+【top出力】
+top - 11:15:43 up 45 days, 18:32,  2 users,  load average: 0.42, 0.38, 0.35
+Tasks: 156 total,   1 running, 155 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  3.2 us,  0.8 sy,  0.0 ni, 95.8 id,  0.2 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7823.4 total,   4218.5 free,   2114.6 used,   1490.3 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   5418.4 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   3421 logcol    20   0  234567  45678  12345 S   2.3   0.6   2:14.56 log-collector
+    892 root      20   0  182456  28345   8234 S   0.3   0.4   0:05.32 systemd
+
+【free出力】
+              total        used        free      shared  buff/cache   available
+Mem:           7.6G        2.0G        4.1G        8.9M        1.4G        5.3G
+Swap:          2.0G          0B        2.0G

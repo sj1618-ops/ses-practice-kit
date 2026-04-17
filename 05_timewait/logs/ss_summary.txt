@@ -1,0 +1,11 @@
+# ss -s
+Total: 28965
+TCP:   28954 (estab 298, closed 28623, orphaned 8, timewait 28547)
+
+Transport Total     IP        IPv6
+*         0         -         -
+RAW       0         0         0
+UDP       8         5         3
+TCP       331       298       33
+INET      339       303       36
+FRAG      0         0         0

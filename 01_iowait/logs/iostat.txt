@@ -1,0 +1,17 @@
+Linux 4.18.0-425.3.1.el8.x86_64 (web01)        04/17/26        _x86_64_        (4 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           2.31    0.00    0.52   94.87    0.00    2.30
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz  %util
+sda              0.12      1.54     0.00   0.00    0.45    12.83    0.02      0.13     0.00   0.00    1.23     6.50   0.01
+sdb            423.45  54287.23     8.34   1.93   47.82   128.18    3.21    142.34     1.18  26.87   13.45    44.32  98.72
+sdc              0.08      0.97     0.00   0.00    0.38    12.13    0.00      0.00     0.00   0.00    0.00     0.00   0.00
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           2.45    0.00    0.48   96.12    0.00    0.95
+
+Device            r/s     rkB/s   rrqm/s  %rrqm r_await rareq-sz     w/s     wkB/s   wrqm/s  %wrqm w_await wareq-sz  %util
+sda              0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00   0.00
+sdb            456.78  58342.56     9.12   1.96   51.23   127.84    2.98    134.56     1.09  26.78   14.23    45.11  99.45
+sdc              0.00      0.00     0.00   0.00    0.00     0.00    0.00      0.00     0.00   0.00    0.00     0.00   0.00

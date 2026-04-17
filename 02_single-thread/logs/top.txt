@@ -1,0 +1,15 @@
+top - 14:33:52 up 12 days,  6:48,  1 user,  load average: 1.02, 1.01, 0.98
+Tasks: 143 total,   2 running, 141 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 24.8 us,  0.2 sy,  0.0 ni, 74.9 id,  0.1 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7823.4 total,   3218.5 free,   2814.6 used,   1790.3 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   4728.4 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   7823 batch     20   0  234567  98234  12345 R  99.9   1.2  47:23.45 python3 aggregate.py
+    892 root      20   0  182456  28345   8234 S   0.0   0.4   0:05.32 systemd
+    923 root      20   0   45678  12345   8234 S   0.0   0.2   0:02.11 sshd
+   1234 root      20   0   98234  23456   8234 S   0.0   0.3   0:01.45 crond
+   2341 app       20   0  823412 234567  23456 S   0.0   2.9   0:34.21 java
+    445 root      20   0   12345   4567   3456 S   0.0   0.1   0:00.45 rsyslogd
+   1023 root      20   0   56789  12345   8234 S   0.0   0.2   0:01.23 nginx
+   3421 nobody    20   0  234567  34567  12345 S   0.0   0.4   0:04.56 httpd

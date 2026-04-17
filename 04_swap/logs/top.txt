@@ -1,0 +1,13 @@
+top - 03:28:14 up  3 days,  7:44,  1 user,  load average: 2.87, 3.12, 3.45
+Tasks: 198 total,   3 running, 194 sleeping,   0 stopped,   1 zombie
+%Cpu(s): 35.2 us,  9.1 sy,  0.0 ni, 43.5 id, 12.2 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7823.4 total,    511.2 free,   6348.9 used,    963.3 buff/cache
+MiB Swap:   4096.0 total,    292.4 free,   3803.6 used.    854.2 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   8823 app       20   0 4823412 2234567  23456 S  42.3  27.8  12:34.56 java
+   8824 app       20   0 4823412 2234567  23456 S  38.1  27.8   8:23.45 java
+   8825 batch     20   0 2345678 1923456  12345 S  21.4  23.9   5:12.34 python3 nightly.py
+    892 root      20   0  182456  28345   8234 S   0.0   0.4   0:05.32 systemd
+    923 root      20   0   45678  12345   8234 S   0.0   0.2   0:02.11 sshd
+   1234 root      20   0   98234  23456   8234 S   0.0   0.3   0:01.45 crond
